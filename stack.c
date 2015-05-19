@@ -2,7 +2,8 @@
 #include<stdlib.h>
 #include<stdbool.h>
 
-int stack[10];
+#define MAX_SIZE 101
+int stack[MAX_SIZE];
 int top = -1;
 
 bool IsEmpty() {
@@ -10,10 +11,14 @@ bool IsEmpty() {
     else return false;
 }
 
+//TODO: implement dynamic memory allocation incase of stack overflow
 void push(int data) {
     if(IsEmpty()) top = 0;
-    else top++;
-    stack[top] = data;
+
+    if(top == MAX_SIZE - 1){
+        printf("Error: StacK Overflow\n");
+    }
+    stack[++top] = data;
     printf("Push successful\n");
 }
 
