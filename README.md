@@ -1,6 +1,6 @@
 # dalgo (*Da*ta structures and *Algo*rithms)
 
-This repo is basically my refresher on Data structures and Algorithms
+This repo is basically a refresher on Data structures and Algorithms
 
 ### Resources i've used to deepen my knowledge
 * [My Code School](http://www.mycodeschool.com/)
