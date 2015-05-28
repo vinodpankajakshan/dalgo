@@ -4,6 +4,7 @@ Reverse a string using stack
 //TODO: refactoring of code pending
 #include<stdio.h>
 #include<stdlib.h>
+#include<string.h>
 
 struct Node {
     char data;
@@ -52,7 +53,7 @@ void reverse(char str[], int length){
 }
 
 int main(){
-    char str[] = "rytvidu";
-    reverse(str, 7);
+    char str[] = "hello world";
+    reverse(str, (int)strlen(str));
     return 0;
 }
