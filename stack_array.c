@@ -2,9 +2,9 @@
 #include<stdlib.h>
 #include<stdbool.h>
 
-#define MAX_SIZE 101
+#define MAX_SIZE 101 // Initial size of the stack
 int stack[MAX_SIZE];
-int top = -1;
+int top = -1; // Emtpy stack
 
 bool IsEmpty() {
     if(top == -1) return true;
@@ -23,6 +23,8 @@ void push(int data) {
 }
 
 int pop() {
+    //TODO: If stack is empty throw error message instead of returning -1
+    // -1 maybe valid value in the stack
     int out = -1;
 
     if(!IsEmpty()) {
