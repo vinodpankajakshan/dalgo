@@ -38,7 +38,7 @@ int pop() {
     return out;
 }
 
-int GetTop() {
+int Top() {
     if(!IsEmpty()) {
         return stack[top];
     }
@@ -80,7 +80,7 @@ int main() {
                 break;
 
             case 3:
-                printf("%d is on top of the stack\n\n", GetTop());
+                printf("%d is on top of the stack\n\n", Top());
                 break;
 
             case 4:
