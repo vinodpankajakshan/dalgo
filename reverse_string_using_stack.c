@@ -1,6 +1,7 @@
 /*
 Reverse a string using stack
 */
+//TODO: refactoring of code pending
 #include<stdio.h>
 #include<stdlib.h>
 
