@@ -63,6 +63,4 @@ int main() {
     InsertAtTail(8); print();
     InsertAtTail(3); print();
     InsertAtHead(10); print();
-    print();
-    // print();
 }
