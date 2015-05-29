@@ -1,7 +1,6 @@
 /*
 Reverse a string using stack
 */
-//TODO: refactoring of code pending
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
@@ -32,7 +31,7 @@ char Top(){
     return top->data;
 }
 
-void reverse(char str[], int length){
+void reverse(char *str, int length){
     for(int i = 0; i < length; i++){
         Push(str[i]);
     }
@@ -45,15 +44,12 @@ void reverse(char str[], int length){
         count++;
         temp = temp->next;
     }
-    for(int j = 0; j < length; j++){
-        printf("%c", str[j]);
-    }
-    printf("\n");
-
 }
 
 int main(){
-    char str[] = "hello world";
+    char str[50];
+    fgets(str, 50, stdin);
     reverse(str, (int)strlen(str));
+    printf("--%s\n", str);
     return 0;
 }
