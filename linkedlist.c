@@ -72,14 +72,14 @@ void reverse_list() {
     struct Node *next = NULL;
     struct Node *temp = head;
 
-    while(temp){                               //temp = 6, 250 (150)
+    while(temp){
         if (temp->link != NULL) {
-            struct Node *temp1 = temp->link;       //temp1 = 5, 0 (250)
-            next = temp1->link;                    //next = NULL
-            temp1->link = temp;                    //temp1 = temp
-            temp->link = prev;                     //temp = (6, prev) -> (4, temp) -> (2,0)
-            prev = temp1;                          //5, 0 
-            temp = next;                           //temp = next;
+            struct Node *temp1 = temp->link;
+            next = temp1->link;
+            temp1->link = temp;
+            temp->link = prev;
+            prev = temp1;
+            temp = next;
         } else{
             return;
         }
@@ -174,12 +174,9 @@ void testInsertAt(){
 void testDeleteAt() {
     printf("----Delete At testing Begins----\n");
     print();
-    deleteAt(4);
-    print();
-    deleteAt(1);
-    print();
-    deleteAt(4);
-    print();
+    deleteAt(4); print();
+    deleteAt(1); print();
+    deleteAt(4); print();
     printf("----Delete At testing Ends----\n");
 }
 
@@ -209,10 +206,3 @@ int main() {
         print();
     }*/
 }
-
-
-// Data structures & algorithms <- rackspace
-// Competitive programming <- challenges solve
-// Open source contribution <- contribute <- reputation <- Cmpy offers <- Own cmpy ideas
-// 
-// Python, Rust, HTML, CSS, Javascript
