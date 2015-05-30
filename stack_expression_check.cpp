@@ -3,10 +3,8 @@
 #include <stack>
 using namespace std;
 
-void check_expression(string expression){
+bool check_expression(string expression){
     stack<char> s;
-
-    cout << "size is " << expression.size() << endl;
 
     for (int i = 0; i < expression.size(); i++) {
         switch(expression[i]){
@@ -23,34 +21,34 @@ void check_expression(string expression){
                 break;
 
             case ')':
-                cout << s.top() << " -- " << expression[i] << endl;
                 if(s.top() != '('){
                     printf("ERROR: Expression out of balance\n");
-                    return;
+                    return false;
                 }
                 s.pop();
+                break;
 
             case ']':
-                cout << s.top() << " -- " << expression[i] << endl;
                 if(s.top() != '['){
                     printf("ERROR: Expression out of balance\n");
-                    return;
+                    return false;
                 }
                 s.pop();
+                break;
                 
             case '}':
-                cout << s.top() << " -- " << expression[i] << endl;
                 if(s.top() != '{'){
                     printf("ERROR: Expression out of balance\n");
-                    return;
+                    return false;
                 }
                 s.pop();
+                break;
         }
     }
-    cout << "Expression in balance" << endl;
+    return s.empty() ? true : false;
 }
 
 int main() {
     string expression = "{[()]}";
-    check_expression(expression);
+    cout << "result: " << check_expression(expression) << endl;
 }
