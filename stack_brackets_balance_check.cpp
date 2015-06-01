@@ -49,6 +49,8 @@ bool check_expression(string expression){
 }
 
 int main() {
-    string expression = "{[()]}";
+    string expression;
+    cout << "Enter a brackets pattern: " << endl << ">";
+    cin >> expression;
     cout << "result: " << check_expression(expression) << endl;
 }
