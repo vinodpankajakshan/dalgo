@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdio>
 #include <stack>
 using namespace std;
 
@@ -59,15 +60,62 @@ void EvaluatePostfix(string expr){
             i--;
         }
     }
-    cout << s.top() << endl;
+    cout << "The result is " << s.top() << endl;
 }
 
 void EvaluatePrefix(string expr){
+    //*,20,5
+    // *,5,320
+    int len = expr.length() - 1;
+    cout << "Inside EvaluatePrefix " << expr << "expr len - " << len << endl;
+    for(int i=len; i >= 0 ; i--){
+        cout << "Inside for loop" << i << "\n";
+        if(expr[i] == ' ' || expr[i] == ',') continue;
+
+        if(IsOperator(expr[i])){
+            cout << "Inside Operator part " << i << "\n";
+            int op1 = s.top(); s.pop();
+            int op2 = s.top(); s.pop();
+            int result = PerformCalc(expr[i], op1, op2);
+            s.push(result);
+        }
+        else if(IsNumericDigit(expr[i])){
+            cout << "Inside Operand Part " << i << "\n";
+            int operand,n = 0;
+
+            for(int j=i; j >= 0; j--){
+                if(IsNumericDigit(expr[j])){
+                    cout << "operand before " << operand << endl;
+                    operand = ((expr[j] - '0') * (10^n)) + operand;
+                    cout << "expr[j] " << j << " - " << expr[j] << " operand " << operand << endl;
+                    n++;
+                    //0 + 0 -> 0
+                    //20 + 0 -> 20
+                    //300 + 20 = 320
+                } else{
+                    s.push(operand);
+                    cout << "rytvidu " << s.top() << endl;
+                    i = j + 1;
+                    break;
+                }
+            }
+        }
+    }
+
+    cout << "The result is " << s.top() << endl;
 }
 
 int main(){
+    char eval_mode;
     string expr;
+
     cout << "Enter an expression to evaluate: \n" << "> ";
     getline(cin, expr);
-    EvaluatePostfix(expr);
+
+    cout << "Prefix(E) or Postfix(S) evaluation?\n" << "> ";
+    cin >> eval_mode;
+
+    if(eval_mode == 'S') EvaluatePostfix(expr);
+    else if (eval_mode == 'E') EvaluatePrefix(expr);
+    else cout << "Wrong input\n";
 }
