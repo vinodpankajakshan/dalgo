@@ -5,7 +5,7 @@ using namespace std;
 stack<int> s;
 
 bool IsOperator(char ch){
-    if(ch == '/' or ch == '*' or ch == '+' or ch == '-'){
+    if(ch == '/' || ch == '*' || ch == '+' || ch == '-'){
         return true;
     }
     return false;
@@ -42,7 +42,7 @@ int PerformCalc(char operate, int op1, int op2){
 
 void EvaluatePostfix(string expr){
     for(int i=0; i < expr.length(); i++){
-        if(expr[i] == ' ' or expr[i] == ',') continue;
+        if(expr[i] == ' ' || expr[i] == ',') continue;
 
         if(IsOperator(expr[i])){
             int op2 = s.top(); s.pop();
@@ -59,9 +59,15 @@ void EvaluatePostfix(string expr){
             i--;
         }
     }
+    cout << s.top() << endl;
+}
+
+void EvaluatePrefix(string expr){
 }
 
 int main(){
-    string expression = "20,5,*";
-    EvaluatePostfix(expression);
+    string expr;
+    cout << "Enter an expression to evaluate: \n" << "> ";
+    getline(cin, expr);
+    EvaluatePostfix(expr);
 }
