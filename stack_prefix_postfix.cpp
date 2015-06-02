@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdio>
 #include <stack>
+#include <cmath>
 using namespace std;
 
 stack<int> s;
@@ -64,44 +65,34 @@ void EvaluatePostfix(string expr){
 }
 
 void EvaluatePrefix(string expr){
-    //*,20,5
-    // *,5,320
     int len = expr.length() - 1;
-    cout << "Inside EvaluatePrefix " << expr << "expr len - " << len << endl;
+
     for(int i=len; i >= 0 ; i--){
-        cout << "Inside for loop" << i << "\n";
         if(expr[i] == ' ' || expr[i] == ',') continue;
 
         if(IsOperator(expr[i])){
-            cout << "Inside Operator part " << i << "\n";
             int op1 = s.top(); s.pop();
             int op2 = s.top(); s.pop();
             int result = PerformCalc(expr[i], op1, op2);
             s.push(result);
         }
         else if(IsNumericDigit(expr[i])){
-            cout << "Inside Operand Part " << i << "\n";
             int operand,n = 0;
 
             for(int j=i; j >= 0; j--){
                 if(IsNumericDigit(expr[j])){
-                    cout << "operand before " << operand << endl;
-                    operand = ((expr[j] - '0') * (10^n)) + operand;
-                    cout << "expr[j] " << j << " - " << expr[j] << " operand " << operand << endl;
+                    operand = ((expr[j] - '0') * (int)pow((double)10, n)) + operand;
                     n++;
-                    //0 + 0 -> 0
-                    //20 + 0 -> 20
-                    //300 + 20 = 320
                 } else{
+                    cout << "operand " << operand << endl;
                     s.push(operand);
-                    cout << "rytvidu " << s.top() << endl;
+                    operand  = n = 0;
                     i = j + 1;
                     break;
                 }
             }
         }
     }
-
     cout << "The result is " << s.top() << endl;
 }
 
