@@ -40,21 +40,19 @@ bool HasHigher(char ch){
     }
 }
 
+
 void Evaluate(string expr){
     string post_expr;
 
     for(int i=0; i < expr.length(); i++){
         if(IsOperator(expr[i])){
-            if(s.empty()) s.push(expr[i]);
-            else {
-                if(HasHigher(expr[i])){
-                    while(!s.empty()){
-                        post_expr += s.top();
-                        s.pop();
-                    }
+            if(!s.empty() && HasHigher(expr[i])){
+                while(!s.empty()){
+                    post_expr += s.top();
+                    s.pop();
                 }
-                s.push(expr[i]);
             }
+            s.push(expr[i]);
         }
         else if(i == expr.length() - 1){
             post_expr += expr[i];
