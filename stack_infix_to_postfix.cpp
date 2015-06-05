@@ -11,6 +11,11 @@ bool IsOperator(char ch){
     return false;
 }
 
+bool IsParentheses(char ch){
+    if(ch == '(' || ch == ')') return true;
+    return false;
+}
+
 // Returns true is stack's top has high precedence operator
 // false otherwise.
 bool HasHigher(char ch){
@@ -40,6 +45,28 @@ bool HasHigher(char ch){
     }
 }
 
+// ((A + B) * C - D) * E
+void Parentheses(string expr){
+    string post_expr;
+
+    for(int i=0; i < expr.length(); i++){
+        if(IsOperator(expr[i]) || IsParentheses(expr[i])){
+            while(!s.empty() &&  s.top() != '(' && HasHigher(expr[i])){
+                if(s.top() == '(' || s.top() == ')') continue;
+                post_expr += s.top();
+                s.pop();
+            }
+            s.push(expr[i]);
+        }
+        else post_expr += expr[i];
+    }
+    while(!s.empty()){
+        if(s.top() == '(' || s.top() == ')') continue;
+        post_expr += s.top();
+        s.pop();
+    }
+    cout << "postfix expression is " << post_expr << endl;
+}
 
 void Evaluate(string expr){
     string post_expr;
