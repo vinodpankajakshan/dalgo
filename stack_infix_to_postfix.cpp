@@ -45,9 +45,7 @@ bool HasHigher(char ch){
     }
 }
 
-// ((A + B) * C - D) * E
-// ((A - B) * C) / D
-void Parentheses(string expr)
+void Evaluate(string expr)
 {
     string post_expr;
 
@@ -60,59 +58,34 @@ void Parentheses(string expr)
                 s.pop();
             }
             s.push(expr[i]);
-            // post_expr += expr[i];
         }
         else if(IsParentheses(expr[i]))
         {
-            if(expr[i] == '(') s.push(expr[i]);
+            if(expr[i] == '(')
+            {
+                s.push(expr[i]);
+            }
             else
             {
                 while(s.top() != '('){
                     post_expr += s.top();
                     s.pop();
                 }
-                s.pop();
-            }
-        }
-        else post_expr += expr[i];
-
-        while(!s.empty()){
-            post_expr += s.top();
-            s.pop();
-        }
-    }
-}
-
-void Evaluate(string expr){
-    string post_expr;
-
-    for(int i=0; i < expr.length(); i++){
-        if(IsOperator(expr[i])){
-            if(!s.empty() && HasHigher(expr[i])){
-                while(!s.empty()){
-                    post_expr += s.top();
-                    s.pop();
-                }
-            }
-            s.push(expr[i]);
-        }
-        else if(i == expr.length() - 1){
-            post_expr += expr[i];
-
-            while(!s.empty()){
-                post_expr += s.top();
-                s.pop();
+                if(!s.empty()) s.pop();
             }
         }
         else post_expr += expr[i];
     }
-    cout << "postfix expression is " << post_expr << endl;
+    while(!s.empty()){
+        post_expr += s.top();
+        s.pop();
+    }
+    cout << "output " << post_expr << endl;
 }
 
 int main(){
     string expr;
     cout << "Enter a Infix Expression: " << endl << "> ";
     getline(cin, expr);
-    // Evaluate(expr);
-    Parentheses(expr);
+    Evaluate(expr);
 }
