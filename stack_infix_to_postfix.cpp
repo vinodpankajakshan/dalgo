@@ -12,7 +12,12 @@ bool IsOperator(char ch){
 }
 
 bool IsParentheses(char ch){
-    if(ch == '(' || ch == ')') return true;
+    if(ch == '(' || ch == ')' || ch == '{' || ch == '}' || ch == '[' || ch == ']') return true;
+    return false;
+}
+
+bool IsOpenParentheses(char ch){
+    if(ch == '(' || ch == '{' || ch == '[') return true;
     return false;
 }
 
@@ -61,17 +66,49 @@ void Evaluate(string expr)
         }
         else if(IsParentheses(expr[i]))
         {
-            if(expr[i] == '(')
+            if(IsOpenParentheses(expr[i])) s.push(expr[i]);
+            else
             {
-                s.push(expr[i]);
+                while(!IsOpenParentheses(s.top())){
+                    post_expr += s.top();
+                    s.pop();
+                }
+                s.pop();
             }
+        }
+        else post_expr += expr[i];
+    }
+    while(!s.empty()){
+        post_expr += s.top();
+        s.pop();
+    }
+    cout << "output " << post_expr << endl;
+}
+
+void Evaluatee(string expr)
+{
+    string post_expr;
+
+    for(int i=0; i < expr.length(); i++)
+    {
+        if(IsOperator(expr[i]))
+        {
+            while(!s.empty() && HasHigher(expr[i])){
+                post_expr += s.top();
+                s.pop();
+            }
+            s.push(expr[i]);
+        }
+        else if(IsParentheses(expr[i]))
+        {
+            if(expr[i] == '(') s.push(expr[i]);
             else
             {
                 while(s.top() != '('){
                     post_expr += s.top();
                     s.pop();
                 }
-                if(!s.empty()) s.pop();
+                s.pop();
             }
         }
         else post_expr += expr[i];
