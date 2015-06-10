@@ -17,8 +17,10 @@ bool IsFull(){
 }
 
 void EnQueue(int x){
-    if(front == -1) front++;
-    queue[++rear] = x;
+    if(IsEmpty()) front = rear = 0;
+    else rear++;
+
+    queue[rear] = x;
 }
 
 int DeQueue(){
