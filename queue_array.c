@@ -12,13 +12,17 @@ bool IsEmpty(){
 }
 
 bool IsFull(){
-    if(rear >= MAX_SIZE) return true;
+    if(((1+rear) % MAX_SIZE) == front) return true;
     return false;
 }
 
 void EnQueue(int x){
-    if(IsEmpty()) front = rear = 0;
-    else rear++;
+    if(IsFull()){
+        printf("Queue is full\n");
+        return;
+    }
+    else if(IsEmpty()) front = rear = 0;
+    else rear = (1+rear) % MAX_SIZE;
 
     queue[rear] = x;
 }
@@ -31,7 +35,7 @@ int DeQueue(){
     int out = queue[front];
 
     if(front == rear) front = rear = -1;
-    else front++;
+    else front = (front + 1) % MAX_SIZE;
 
     return out;
 }
