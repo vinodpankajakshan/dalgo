@@ -22,8 +22,15 @@ void EnQueue(int x){
 }
 
 int DeQueue(){
+    if(IsEmpty()){
+        printf("Queue is empty\n");
+        return -1;
+    }
     int out = queue[front];
-    front++;
+
+    if(front == rear) front = rear = -1;
+    else front++;
+
     return out;
 }
 
