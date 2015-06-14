@@ -29,24 +29,33 @@ void EnQueue(int data) {
 }
 
 // linked list delete
+// Deletes from the end
 void DeQueue() {
-    if(head == tail){
-        head = tail = NULL;
+    if(tail == NULL || head == NULL){
+        printf("Queue is empty\n");
         return;
+    }
+    else if(head == tail) {
+        free(tail);
+        return;
+    }
+    else {
+        struct Node* temp = tail->prev;
+
+        temp->next = NULL;
+        free(tail);
+        tail = temp;
     }
 }
 
 void print() {
     struct Node* temp = head;
-    printf("tail: %d", (int)tail);
 
     while(temp) {
-        printf("--> (%d, %d, %d)%d\n",(int)temp->prev, temp->data, (int)temp->next, (int)temp);
-        if (temp == tail) {
-            printf("hit the tail. temp: %d, tail: %d\n", (int)temp, (int)tail);
-        }
+        printf("--> (%d, %d, %d)%d ",(int)temp->prev, temp->data, (int)temp->next, (int)temp);
         temp = temp->next;
     }
+    printf("\n");
 }
 
 int main() {
@@ -54,4 +63,9 @@ int main() {
     EnQueue(10); print();
     EnQueue(3);  print();
     EnQueue(23); print();
+    printf("\n=====DeQueue Ops=====\n");
+    DeQueue();   print();
+    DeQueue();   print();
+    DeQueue();   print();
+    DeQueue();   print();
 }
