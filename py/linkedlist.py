@@ -2,7 +2,6 @@ class Element(object):
     def __init__(self, value):
         self.value = value
         self.next = None
-        print "rytvidu"
 
 
 class LinkedList(object):
@@ -19,17 +18,35 @@ class LinkedList(object):
         else:
             self.head = new_element
 
-	def get_position(self, position):
-		pos = 0
-		if self.head:
-			while current.next:
-				pos = pos + 1
-				if pos = position
-
-		return pos
-
 	def insert(self, new_element, position):
 		return None
 
 	def delete(self, pos):
 		return None
+
+    def get_position(self, position):
+        pos = 1
+        current = self.head
+
+        if self.head:
+            while current.next and pos != position:
+                pos = pos + 1
+                current = current.next
+
+            if pos == position:
+                return current
+
+        return None
+
+
+
+
+
+
+
+
+
+
+
+
+
