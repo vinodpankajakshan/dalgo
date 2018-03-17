@@ -18,11 +18,15 @@ class LinkedList(object):
         else:
             self.head = new_element
 
-	def insert(self, new_element, position):
-		return None
+    def insert(self, new_element, position):
+        element_prev = self.get_position(position - 1)
 
-	def delete(self, pos):
-		return None
+        if element_prev:
+            new_element.next = element_prev.next
+            element_prev.next = new_element
+
+    def delete(self, pos):
+        pass
 
     def get_position(self, position):
         pos = 1
