@@ -1,7 +1,7 @@
 # dalgo (*Da*ta structures and *Algo*rithms)
 
-This repo is basically a refresher on Data structures and Algorithms
+This repo is basically a refresher on Data structures/Algorithms
 
-##### Resources i've used to deepen my knowledge
+#### Based on lessons from below courses/videos
 * [My Code School](http://www.mycodeschool.com/)
-* [Intro to Algorithms - MIT](http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-006-introduction-to-algorithms-fall-2011/)
+* [Technical Interview Course - Udacity](https://www.udacity.com/course/technical-interview--ud513)
