@@ -43,8 +43,6 @@ class LinkedList(object):
         elif pos == position:
             self.head = None
             
-        
-
     def get_position(self, position):
         pos = 1
         current = self.head
