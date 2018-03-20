@@ -25,8 +25,25 @@ class LinkedList(object):
             new_element.next = element_prev.next
             element_prev.next = new_element
 
-    def delete(self, pos):
-        pass
+    def delete(self, position):
+        pos = 1
+        current = self.head
+        previous = None
+
+        while current.next and pos != position:
+            previous = current
+            current = current.next
+            pos = pos + 1
+
+        if previous:
+            previous.next = current.next
+            current = None
+        elif current.next and pos == position:
+            self.head = self.head.next
+        elif pos == position:
+            self.head = None
+            
+        
 
     def get_position(self, position):
         pos = 1
